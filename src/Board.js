@@ -27,11 +27,12 @@ import "./Board.css";
  *
  **/
 
-function Board({ nrows, ncols, chanceLightStartsOn= .50 }) {
+function Board({ nrows=3, ncols=3, chanceLightStartsOn=0.50 }) {
   const [board, setBoard] = useState(createBoard());
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
   function createBoard() {
+   // done: create array-of-arrays of true/false values
     let initialBoard = [];
     for (let y = 0; y < nrows; y++) {
       let row = [];
@@ -42,18 +43,19 @@ function Board({ nrows, ncols, chanceLightStartsOn= .50 }) {
       }
       initialBoard.push(row);
     }
-
-
-    // done: create array-of-arrays of true/false values
     return initialBoard;
   }
 
   function hasWon() {
-    // TODO: check the board in state to determine whether the player has won.
-    // let rowWinIsTrue = board.map(row=>row.every(false))
-    // let boardWinIsTrue = rowWinIsTrue.every(false)
-    // return boardWinIsTrue
-
+    // done: check the board in state to determine whether the player has won.
+    for (let i=0; i<board.length; i++) {
+      for (let j=0; j< board[i].length; j++) {
+        if (board[j][i] === true) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   function flipCellsAround(coord) {
@@ -70,7 +72,11 @@ function Board({ nrows, ncols, chanceLightStartsOn= .50 }) {
 
       // TODO: Make a (deep) copy of the oldBoard
 
+
+
       // TODO: in the copy, flip this cell and the cells around it
+
+
 
       // TODO: return the copy
     });
